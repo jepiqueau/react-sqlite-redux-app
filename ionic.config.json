@@ -1,0 +1,7 @@
+{
+  "name": "react-sqlite-redux-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
