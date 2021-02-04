@@ -22,19 +22,45 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+
+import { useSQLite } from 'react-sqlite-hook/dist';
+
+
+// Singleton SQLite Hook
+export let sqlite: any;
+
+const App: React.FC = () => {
+  const {echo, getPlatform, createConnection, closeConnection,
+    retrieveConnection, retrieveAllConnections, closeAllConnections,
+    addUpgradeStatement, importFromJson, isJsonValid,
+    copyFromAssets, isAvailable} = useSQLite();
+
+  sqlite = {echo: echo, getPlatform: getPlatform,
+    createConnection: createConnection,
+    closeConnection: closeConnection,
+    retrieveConnection: retrieveConnection,
+    retrieveAllConnections: retrieveAllConnections,
+    closeAllConnections: closeAllConnections,
+    addUpgradeStatement: addUpgradeStatement,
+    importFromJson: importFromJson,
+    isJsonValid: isJsonValid,
+    copyFromAssets: copyFromAssets,
+    isAvailable:isAvailable};
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route exact path="/home">
+            <Home />
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
+  )
+};
 
 export default App;

@@ -1,0 +1,13 @@
+{
+	"appId": "com.jeep.app.ionic.react.redux",
+	"appName": "react-sqlite-redux-app",
+	"bundledWebRuntime": false,
+	"npmClient": "npm",
+	"webDir": "build",
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 0
+		}
+	},
+	"cordova": {}
+}
