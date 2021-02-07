@@ -1,12 +1,13 @@
-import React from "react"
+import React from "react";
 import { IonCard, IonList, IonItem, IonButton, IonInput } from '@ionic/react';
+import { IArticle } from '../../store/articles/types';
 
 type Props = {
     saveArticle: (article: IArticle | any) => void
 }
 
 export const AddArticle: React.FC<Props> = ({ saveArticle }) => {
-    const [article, setArticle] = React.useState<IArticle | {}>()
+    const [article, setArticle] = React.useState<IArticle | {}>();
     const [title, setTitle] = React.useState<string>("");
     const [body, setBody] = React.useState<string>("");
 

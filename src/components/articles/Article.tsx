@@ -1,18 +1,20 @@
-import * as React from "react"
-import { Dispatch } from "redux"
-import { useDispatch } from "react-redux"
+import * as React from "react";
+import { Dispatch } from "redux";
+import { useDispatch } from "react-redux";
 import { IonItemSliding, IonItem, IonLabel, IonItemOptions, IonItemOption, IonText } from '@ionic/react';
+import { IArticle } from '../../store/articles/types';
 
 type Props = {
+  dbName: string
   article: IArticle
-  removeArticle: (article: IArticle) => void
+  removeArticle: (dbName: string, article: IArticle) => void
 }
 
-export const Article: React.FC<Props> = ({ article, removeArticle }) => {
-  const dispatch: Dispatch<any> = useDispatch()
+export const Article: React.FC<Props> = ({ dbName, article, removeArticle }) => {
+  const dispatch: Dispatch<any> = useDispatch();
 
   const deleteArticle = React.useCallback(
-    (article: IArticle) => dispatch(removeArticle(article)),
+    (dbName: string, article: IArticle) => dispatch(removeArticle(dbName,article)),
     [dispatch, removeArticle]
   )
 
@@ -28,7 +30,7 @@ export const Article: React.FC<Props> = ({ article, removeArticle }) => {
             
         </IonItem>
         <IonItemOptions side="end">
-            <IonItemOption color="danger" onClick={() => deleteArticle(article)}>
+            <IonItemOption color="danger" onClick={() => deleteArticle(dbName,article)}>
                 Delete
             </IonItemOption>
         </IonItemOptions>
@@ -36,12 +38,3 @@ export const Article: React.FC<Props> = ({ article, removeArticle }) => {
 
   )
 }
-/*
-    <div className="Article">
-      <div>
-        <h1>{article.title}</h1>
-        <p>{article.body}</p>
-      </div>
-      <button onClick={() => deleteArticle(article)}>Delete</button>
-    </div>
-*/
